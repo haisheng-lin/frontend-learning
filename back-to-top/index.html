@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>回到顶部示例</title>
+  <style>
+    .scroll-top {
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      font-size: 11px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .scroll-top:hover {
+      border-color: #757575;
+      color: #757575;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+    <p>hehehehehehe</p>
+  </main>
+  <span id="scrollToTop" class="scroll-top">回到顶部</span>
+
+  <script>
+    // 生硬版
+    (function smoothScroll () {
+      const scrollToTopDom = document.querySelector('#scrollToTop');
+      scrollToTopDom.addEventListener('click', function () {
+        let timer;
+        let offsetTop = document.documentElement.scrollTop;
+        timer = setInterval(() => {
+          if (offsetTop > 10) {
+            offsetTop = offsetTop / 5 * 4;
+            window.scrollTo(0, offsetTop);
+          } else {
+            clearInterval(timer);
+          }
+        }, 16);
+      });
+    })();
+
+    // 流畅版
+    const scrollToTopDom = document.querySelector('#scrollToTop');
+    scrollToTopDom.addEventListener('click', smoothScroll);
+    function smoothScroll () {
+      let timer;
+      let offsetTop = document.documentElement.scrollTop; // 当前视口离页面顶部距离
+      if (offsetTop > 0) {
+        window.requestAnimationFrame(smoothScroll);
+        window.scrollTo(0, offsetTop - (offsetTop / 5));
+      }
+    }
+  </script>
+</body>
+</html>

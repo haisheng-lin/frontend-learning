@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Toggle Menu Demo</title>
+  <style>
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+    ul li {
+      list-style: none;
+    }
+    .menu-list {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100px;
+      background-color: green;
+      color: #fff;
+      text-align: center;
+    }
+    .menu-list li {
+      border: 1px solid white;
+    }
+    span.menu {
+      display: block;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+    .submenu-list {
+      background-color: #eee;
+      color: grey;
+      overflow: hidden; /* 如果不设置的话即使 submenu-list 设置了高度，但是里面溢出的 submenu 还是会显示 */
+    }
+    .submenu {
+      padding: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <ul class="menu-list">
+    <li>
+      <span class="menu">前端</span>
+      <ul class="submenu-list">
+        <li class="submenu"><span>html</span></li>
+        <li class="submenu"><span>css</span></li>
+        <li class="submenu"><span>JavaScript</span></li>
+      </ul>
+    </li>
+    <li>
+      <span class="menu">后端</span>
+      <ul class="submenu-list">
+        <li class="submenu"><span>Java</span></li>
+        <li class="submenu"><span>php</span></li>
+        <li class="submenu"><span>Python</span></li>
+      </ul>
+    </li>
+    <li>
+      <span class="menu">通识</span>
+      <ul class="submenu-list">
+        <li class="submenu"><span>计算机网络</span></li>
+        <li class="submenu"><span>数据结构</span></li>
+        <li class="submenu"><span>编译原理</span></li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+
+    function Menu (menuElem) {
+      this.speed = 3;
+      this.time = 10;
+      const rootMenus = menuElem.querySelectorAll('.menu');
+      const me = this;
+      rootMenus.forEach(rootMenu => {
+        rootMenu.addEventListener('click', function () {
+          const subMenuList = this.nextElementSibling;
+          me.toggleMenu(subMenuList);
+        });
+      });
+    }
+
+    Menu.prototype.toggleMenu = function (subMenuList) {
+      if (subMenuList.classList.contains('hide')) {
+        this.expandMenu(subMenuList);
+      } else {
+        this.collapseMenu(subMenuList);
+      }
+    };
+
+    Menu.prototype.expandMenu = function (subMenuList) {
+      let fullHeight = 0;
+      subMenuList.classList.remove('hide');
+      subMenuList.style.height = '0';
+      const subMenus = subMenuList.querySelectorAll('.submenu');
+      for (const subMenu of subMenus) {
+        fullHeight += subMenu.offsetHeight;
+      }
+      const me = this;
+      const moveBy = Math.round(this.speed * subMenus.length);
+      const timer = setInterval(() => {
+        const curHeight = subMenuList.offsetHeight;
+        let newHeight = curHeight + moveBy;
+        if (newHeight < fullHeight) {
+          subMenuList.style.height = `${newHeight}px`;
+        } else {
+          clearInterval(timer);
+          subMenuList.style.height = '';
+        }
+      }, this.time);
+    }
+
+    Menu.prototype.collapseMenu = function (subMenuList) {
+      subMenuList.classList.add('hide');
+      let fullHeight = 0;
+      const subMenus = subMenuList.querySelectorAll('.submenu');
+      for (const subMenu of subMenus) {
+        fullHeight += subMenu.offsetHeight;
+      }
+      const me = this;
+      const moveBy = Math.round(this.speed * subMenus.length);
+      const timer = setInterval(() => {
+        const curHeight = subMenuList.offsetHeight;
+        let newHeight = curHeight - moveBy;
+        if (newHeight > 0) {
+          subMenuList.style.height = `${newHeight}px`;
+        } else {
+          clearInterval(timer);
+          subMenuList.style.height = '0';
+        }
+      }, this.time);
+    }
+
+    new Menu(document.querySelector('.menu-list'));
+
+  </script>
+</body>
+</html>

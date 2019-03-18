@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>模拟 Proxy 双向绑定</title>
+  <script src="vue-proxy.js"></script>
+</head>
+<body>
+  <input type="text" id="username" onkeyup="handleUsername(event)">
+  <span id="username-model"></span>
+
+  <script>
+    const usernameModelDom = document.querySelector('#username-model');
+    const app = new Vue({
+      data: {
+        username: '',
+      },
+    });
+
+    function handleUsername (e) {
+      app.$data.username = e.target.value;
+    }
+
+    app.$watch('username', (str) => usernameModelDom.innerText = str);
+  </script>
+</body>
+</html>
