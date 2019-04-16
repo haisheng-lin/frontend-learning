@@ -12,3 +12,4 @@
 - `sort`: JS 实现各类排序算法
 - `throttle`: JS 实现节流函数
 - `vue-proxy`: 使用 proxy 模拟实现 Vue3 的双向绑定
+- `text-vertical-align`: css 实现文本垂直居中

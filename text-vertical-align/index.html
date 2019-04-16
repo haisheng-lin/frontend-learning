@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>text-vertical-align</title>
+  <style>
+    .message-box {
+      width: 500px;
+      height: 500px;
+      background: #333;
+    }
+    .message-item {
+      display: table;
+      width: 100%;
+      height: 100px;
+      padding: 20px;
+      background: #666;
+      box-sizing: border-box;
+    }
+    .item-title {
+      display: table-cell;
+      width: 60%;
+      vertical-align: middle;
+    }
+    .item-time {
+      display: table-cell;
+      width: 40%;
+      vertical-align: middle;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="message-box">
+    <div class="message-item">
+      <p class="item-title">课程下单成功</p>
+      <p class="item-time">2017-02-01 10:30</p>
+    </div>
+    <div class="message-item">
+      <p class="item-title">您报名的活动即将开始【作品集日-一起来看展】</p>
+      <p class="item-time">2017-02-01 10:30</p>
+    </div>
+  </div>
+</body>
+</html>
