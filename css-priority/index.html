@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css-priority</title>
+  <style>
+    * {
+      background: blue;
+    }
+    .content {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    #content {
+      background: green;
+    }
+    input[type="password"] {
+      background: blueviolet;
+    }
+    #content.content {
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <!-- !important > 行内样式 1000 > id 100 > 属性 > 类 10 > 标签 1 > * > 继承 -->
+  <input style="background: yellow;" id="content" type="password" class="content">
+</body>
+</html>
