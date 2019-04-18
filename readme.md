@@ -15,3 +15,4 @@
 - `text-vertical-align`: css 实现文本垂直居中
 - `clearfix`: 清除浮动
 - `css-priority`: css 优先级
+- `css-align-center`: css 各种居中
